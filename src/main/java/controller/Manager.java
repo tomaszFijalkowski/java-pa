@@ -12,13 +12,22 @@ public class Manager {
     private MediaLibrary mediaLibrary;
 
     public void addItemToLibrary(MediaItem item) {
-        mediaLibrary.getMediaItemsData().add(item);
+        if (item == null){
+            return;
+        }
+
+        mediaLibrary.addMediaItem(item);
     }
 
     public void removeItemFromLibrary(MediaItem item) {
-        mediaLibrary.getMediaItemsData().remove(item);
+        if (item == null){
+            return;
+        }
+
+        mediaLibrary.removeMediaItem(item);
     }
 
     public void editMediaItem(MediaItem item) {
+
     }
 }

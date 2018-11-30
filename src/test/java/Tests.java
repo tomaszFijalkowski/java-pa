@@ -10,17 +10,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Date;
 
-public class Tests {
+class Tests {
 
-    User user;
-    Manager manager;
-    MediaLibrary mediaLibrary;
-    MusicAlbum musicAlbum;
-    Book book;
-    Film film;
+    private User user;
+    private Manager manager;
+    private MediaLibrary mediaLibrary;
+    private MusicAlbum musicAlbum;
+    private Book book;
+    private Film film;
 
     @BeforeEach
-    public void prepareData(){
+    void prepareData(){
         book = new Book("Book Title Example", "Author Example 1", new Date(2018), true, 500);
         film = new Film("Film Example", "Author Example 2", new Date(2014), false, 90);
         musicAlbum = new MusicAlbum("Music Album Example", "Author Example 3", new Date(2016), true, 45);
@@ -35,7 +35,7 @@ public class Tests {
     }
 
     @Test
-    public void checkIfUserCanRentAnAvailableItem(){
+    void checkIfUserCanRentAnAvailableItem(){
         final int userRentalListAfterRent = 1;
         user.rentItem(book);
 
@@ -44,7 +44,7 @@ public class Tests {
     }
 
     @Test
-    public void checkIfUserCanNotRentAnUnAvailableItem(){
+    void checkIfUserCanNotRentAnUnAvailableItem(){
         final int userRentalListAfterRent = 0;
         user.rentItem(film);
 
@@ -53,7 +53,7 @@ public class Tests {
     }
 
     @Test
-    public void checkIfUserCanReturnAnItem(){
+    void checkIfUserCanReturnAnItem(){
         final int userRentalListAfterRent = 0;
         user.rentItem(musicAlbum);
         user.returnItem(musicAlbum);
@@ -64,7 +64,7 @@ public class Tests {
     }
 
     @Test
-    public void checkIfManagerCanRemoveItems(){
+    void checkIfManagerCanRemoveItems(){
         final int mediaLibrarySizeAfterRemovingItem = 2;
 
         manager.removeItemFromLibrary(book);
@@ -72,7 +72,7 @@ public class Tests {
     }
 
     @Test
-    public void checkIfManagerCanAddItems(){
+    void checkIfManagerCanAddItems(){
         final int mediaLibrarySizeAfterAddingItem = 4;
 
         manager.addItemToLibrary(new Book("New Book Title Example", "Author Example 4", new Date(2016), true, 400));

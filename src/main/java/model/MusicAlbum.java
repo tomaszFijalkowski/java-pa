@@ -16,10 +16,6 @@ public class MusicAlbum extends MediaItem implements Listenable {
         return length;
     }
 
-    public void setLength(double length) {
-        this.length = length;
-    }
-
     public void listenTo() {
 
     }

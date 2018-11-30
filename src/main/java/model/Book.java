@@ -15,4 +15,8 @@ public class Book extends MediaItem implements Readable {
     public void read() {
 
     }
+
+    public int getNumberOfPages() {
+        return numberOfPages;
+    }
 }

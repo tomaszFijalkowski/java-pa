@@ -1,7 +1,8 @@
 package controller;
 
-import model.MediaItem;
+import model.*;
 import persistance.MediaLibrary;
+import view.ItemInfoRenderer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +15,25 @@ public class User {
         this.mediaLibrary = mediaLibrary;
     }
 
-    public void preview(MediaItem item) {
-        System.out.println("Item title: " + item.getTitle());
-        System.out.println("Item author: " + item.getAuthor());
-        System.out.println("Item release date: " + item.getReleaseDate());
+    public void preview(Film film) {
+        getGeneralInfo(film);
+        ItemInfoRenderer.showItemInfo(Label.LENGTH, String.valueOf(film.getLength()));
+    }
+
+    public void preview(Book book) {
+        getGeneralInfo(book);
+        ItemInfoRenderer.showItemInfo(Label.NUMBER_OF_PAGES, String.valueOf(book.getNumberOfPages()));
+    }
+
+    public void preview(MusicAlbum musicAlbum) {
+        getGeneralInfo(musicAlbum);
+        ItemInfoRenderer.showItemInfo(Label.LENGTH, String.valueOf(musicAlbum.getLength()));
+    }
+
+    private void getGeneralInfo(MediaItem item) {
+        ItemInfoRenderer.showItemInfo(Label.TITLE, String.valueOf(item.getTitle()));
+        ItemInfoRenderer.showItemInfo(Label.AUTHOR, String.valueOf(item.getAuthor()));
+        ItemInfoRenderer.showItemInfo(Label.DATE, String.valueOf(item.getReleaseDate()));
     }
 
     public MediaItem search(MediaItem item) {
@@ -31,6 +47,10 @@ public class User {
     }
 
     public void rentItem(MediaItem item) {
+        if (item == null){
+            return;
+        }
+
         if (checkAvailability(item)) {
             item.setAvailability(false);
             rentedItems.add(item);
@@ -38,6 +58,10 @@ public class User {
     }
 
     public void returnItem(MediaItem item) {
+        if (item == null){
+            return;
+        }
+
         item.setAvailability(true);
         rentedItems.remove(item);
     }

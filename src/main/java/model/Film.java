@@ -6,7 +6,9 @@ import model.interfaces.Watchable;
 import java.util.Date;
 
 public class Film extends MediaItem implements Listenable, Watchable {
-    private double length;
+    public double getLength() {
+        return length;
+    }
 
     public Film(String title, String author, Date releaseDate, boolean availability, double length) {
         super(title, author, releaseDate, availability);
@@ -20,4 +22,6 @@ public class Film extends MediaItem implements Listenable, Watchable {
     public void listenTo() {
 
     }
+
+    private double length;
 }
