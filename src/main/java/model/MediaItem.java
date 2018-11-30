@@ -27,7 +27,7 @@ abstract public class MediaItem {
         return releaseDate;
     }
 
-    public boolean isAvailability() {
+    public boolean isAvailable() {
         return availability;
     }
 

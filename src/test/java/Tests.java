@@ -4,6 +4,7 @@ import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import persistance.MediaLibrary;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,7 +21,7 @@ class Tests {
     private Film film;
 
     @BeforeEach
-    void prepareData(){
+    void prepareData() {
         book = new Book("Book Title Example", "Author Example 1", new Date(2018), true, 500);
         film = new Film("Film Example", "Author Example 2", new Date(2014), false, 90);
         musicAlbum = new MusicAlbum("Music Album Example", "Author Example 3", new Date(2016), true, 45);
@@ -35,48 +36,84 @@ class Tests {
     }
 
     @Test
-    void checkIfUserCanRentAnAvailableItem(){
+    void checkIfUserCanRentAnAvailableItem() {
         final int userRentalListAfterRent = 1;
         user.rentItem(book);
 
-        assertFalse(book.isAvailability());
+        assertFalse(book.isAvailable());
         assertEquals(userRentalListAfterRent, user.getRentedItems().size());
     }
 
     @Test
-    void checkIfUserCanNotRentAnUnAvailableItem(){
+    void checkIfUserCanNotRentAnUnAvailableItem() {
         final int userRentalListAfterRent = 0;
         user.rentItem(film);
 
-        assertFalse(film.isAvailability());
+        assertFalse(film.isAvailable());
         assertEquals(userRentalListAfterRent, user.getRentedItems().size());
     }
 
     @Test
-    void checkIfUserCanReturnAnItem(){
+    void checkIfUserCanReturnAnItem() {
         final int userRentalListAfterRent = 0;
         user.rentItem(musicAlbum);
         user.returnItem(musicAlbum);
 
-        assertTrue(musicAlbum.isAvailability());
+        assertTrue(musicAlbum.isAvailable());
         assertEquals(userRentalListAfterRent, user.getRentedItems().size());
-
     }
 
     @Test
-    void checkIfManagerCanRemoveItems(){
+    void checkIfManagerCanRemoveItems() {
         final int mediaLibrarySizeAfterRemovingItem = 2;
-
         manager.removeItemFromLibrary(book);
+
         assertEquals(mediaLibrarySizeAfterRemovingItem, mediaLibrary.getMediaItemsData().size());
     }
 
     @Test
-    void checkIfManagerCanAddItems(){
+    void checkIfManagerCanAddItems() {
         final int mediaLibrarySizeAfterAddingItem = 4;
-
         manager.addItemToLibrary(new Book("New Book Title Example", "Author Example 4", new Date(2016), true, 400));
 
         assertEquals(mediaLibrarySizeAfterAddingItem, mediaLibrary.getMediaItemsData().size());
     }
+
+    // Check for null values
+
+    @Test
+    void checkIfUserCanRentNull() {
+        final int userRentalListAfterRent = 0;
+        user.rentItem(null);
+
+        assertEquals(userRentalListAfterRent, user.getRentedItems().size());
+    }
+
+    @Test
+    void checkIfUserCanReturnNull() {
+        final int userRentalListAfterRent = 1;
+        user.rentItem(musicAlbum);
+        user.returnItem(null);
+
+        assertFalse(musicAlbum.isAvailable());
+        assertEquals(userRentalListAfterRent, user.getRentedItems().size());
+    }
+
+    @Test
+    void checkIfManagerCanRemoveNull() {
+        final int mediaLibrarySizeAfterRemovingItem = 3;
+        manager.removeItemFromLibrary(null);
+
+        assertEquals(mediaLibrarySizeAfterRemovingItem, mediaLibrary.getMediaItemsData().size());
+    }
+
+    @Test
+    void checkIfManagerCanAddNull() {
+        final int mediaLibrarySizeAfterAddingItem = 3;
+        manager.addItemToLibrary(null);
+
+        assertEquals(mediaLibrarySizeAfterAddingItem, mediaLibrary.getMediaItemsData().size());
+    }
+
+
 }

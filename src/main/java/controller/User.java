@@ -30,12 +30,6 @@ public class User {
         ItemInfoRenderer.showItemInfo(Label.LENGTH, String.valueOf(musicAlbum.getLength()));
     }
 
-    private void getGeneralInfo(MediaItem item) {
-        ItemInfoRenderer.showItemInfo(Label.TITLE, String.valueOf(item.getTitle()));
-        ItemInfoRenderer.showItemInfo(Label.AUTHOR, String.valueOf(item.getAuthor()));
-        ItemInfoRenderer.showItemInfo(Label.DATE, String.valueOf(item.getReleaseDate()));
-    }
-
     public MediaItem search(MediaItem item) {
         MediaItem searchedItem = null;
         for (MediaItem mediaItem : mediaLibrary.getMediaItemsData()) {
@@ -70,7 +64,13 @@ public class User {
         return rentedItems;
     }
 
+    private void getGeneralInfo(MediaItem item) {
+        ItemInfoRenderer.showItemInfo(Label.TITLE, String.valueOf(item.getTitle()));
+        ItemInfoRenderer.showItemInfo(Label.AUTHOR, String.valueOf(item.getAuthor()));
+        ItemInfoRenderer.showItemInfo(Label.DATE, String.valueOf(item.getReleaseDate()));
+    }
+
     private boolean checkAvailability(MediaItem item) {
-        return item.isAvailability();
+        return item.isAvailable();
     }
 }

@@ -5,17 +5,16 @@ import persistance.MediaLibrary;
 
 public class Manager {
 
+    private MediaLibrary mediaLibrary;
+
     public Manager(MediaLibrary mediaLibrary) {
         this.mediaLibrary = mediaLibrary;
     }
-
-    private MediaLibrary mediaLibrary;
 
     public void addItemToLibrary(MediaItem item) {
         if (item == null){
             return;
         }
-
         mediaLibrary.addMediaItem(item);
     }
 
@@ -23,7 +22,6 @@ public class Manager {
         if (item == null){
             return;
         }
-
         mediaLibrary.removeMediaItem(item);
     }
 
