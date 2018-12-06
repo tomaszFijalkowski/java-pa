@@ -12,11 +12,11 @@ public class Book extends MediaItem implements Readable {
         this.numberOfPages = numberOfPages;
     }
 
-    public void read() {
-
-    }
-
     public int getNumberOfPages() {
         return numberOfPages;
+    }
+
+    public void read() {
+
     }
 }

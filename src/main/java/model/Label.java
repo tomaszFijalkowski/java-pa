@@ -5,5 +5,6 @@ public enum Label {
     AUTHOR,
     DATE,
     NUMBER_OF_PAGES,
-    LENGTH
+    LENGTH,
+    AGE_RESTRICTION;
 }

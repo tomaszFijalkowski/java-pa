@@ -3,12 +3,10 @@ package controller;
 import model.MediaItem;
 import persistance.MediaLibrary;
 
-public class Manager {
-
-    private MediaLibrary mediaLibrary;
+public class Manager extends User{
 
     public Manager(MediaLibrary mediaLibrary) {
-        this.mediaLibrary = mediaLibrary;
+        super(mediaLibrary);
     }
 
     public void addItemToLibrary(MediaItem item) {
